@@ -1,0 +1,49 @@
+<div class="flex flex-col justify-center items-center bg-white">
+  <div class="mx-auto flex w-full flex-col justify-center px-5 pt-0 md:h-[unset]">
+    <div
+      class="my-auto mb-auto mt-8 flex flex-col md:mt-[70px] w-[350px] max-w-[450px] mx-auto md:max-w-[450px] lg:mt-[130px] lg:max-w-[450px]">
+      <p class="font-bold text-center text-2xl">Registro</p>
+      <div>
+        <form class="mb-4" [formGroup]="registerForm" (ngSubmit)="submit()">
+          <div class="grid gap-2 mt-2">
+            <div class="grid gap-4">
+              <input
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium focus:outline-0 dark:border-zinc-800 dark:bg-transparent "
+                id="nombre" placeholder="Jhon dole" type="text" autocapitalize="none" autocomplete="nombre"
+                autocorrect="off" name="nombre" formControlName="nombre">
+              @if (registerForm.get('nombre')?.touched && registerForm.get('nombre')?.hasError('required')) {
+              <p class="text-sm ml-2 text-red-500">Name is required</p>
+              }
+              <input
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium focus:outline-0 dark:border-zinc-800 dark:bg-transparent "
+                id="correo" placeholder="name@example.com" type="email" autocapitalize="none" autocomplete="correo"
+                autocorrect="off" name="correo" formControlName="correo">
+              @if (registerForm.get('correo')?.touched && registerForm.get('correo')?.hasError('required')) {
+              <p class="text-sm ml-2 text-red-500">Email is required</p>
+              }
+              <input
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium focus:outline-0 dark:border-zinc-800 dark:bg-transparent "
+                id="nickname" placeholder="Jhon" type="email" autocapitalize="none" autocomplete="nickname"
+                autocorrect="off" name="email" formControlName="nickname">
+              @if (registerForm.get('nickname')?.touched && registerForm.get('nickname')?.hasError('required')) {
+              <p class="text-sm ml-2 text-red-500">Nickname is required</p>
+              }
+              <input id="password" placeholder="Password" type="password" autocomplete="current-password"
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium placeholder:text-zinc-400 focus:outline-0 dark:border-zinc-800 dark:bg-transparent  dark:placeholder:text-zinc-400"
+                name="password" formControlName="password">
+              @if (registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')) {
+              <p class="text-sm ml-2 text-red-500">Password is required</p>
+              }
+            </div>
+            <button
+              class="whitespace-nowrap bg-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 mt-2 flex h-[unset] w-full items-center justify-center rounded-lg px-4 py-4 text-sm font-medium"
+              [disabled]="registerForm.invalid" type="submit">Registrarse</button>
+            <a [routerLink]="['/login']"
+              class="whitespace-nowrap bg-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 mt-2 flex h-[unset] w-full items-center justify-center rounded-lg px-4 py-4 text-sm font-medium">
+              Ingresar </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="flex flex-col justify-center items-center bg-white">
+  <div class="mx-auto flex w-full flex-col justify-center px-5 pt-0 md:h-[unset]">
+    <div class="my-auto mb-auto mt-4 flex flex-col  w-[333px] max-w-[333px] mx-auto md:max-w-[333px]  lg:max-w-[550px]">
+      <p class="font-bold text-center text-2xl">Crear tarea</p>
+      <div>
+        <form class="mb-4" [formGroup]="registerTaskForm" (ngSubmit)="submit()">
+          <div class="grid gap-2 mt-2">
+            <div class="grid gap-4">
+              <input
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium focus:outline-0 dark:border-zinc-800 dark:bg-transparent "
+                id="title" placeholder="Titulo" type="text" autocapitalize="none" autocomplete="title" autocorrect="off"
+                name="title" formControlName="title">
+              @if (registerTaskForm.get('title')?.touched && registerTaskForm.get('title')?.hasError('required')) {
+              <p class="text-sm ml-2 text-red-500">El titulo es requerido</p>
+              }
+              <textarea placeholder="Descripción"
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium focus:outline-0 dark:border-zinc-800 dark:bg-transparent "
+                name="description" formControlName="description" autocorrect="off" id="description"></textarea>
+              @if (registerTaskForm.get('description')?.touched &&
+              registerTaskForm.get('description')?.hasError('required')) {
+              <p class="text-sm ml-2 text-red-500">La descripción es requerida</p>
+              }
+              <select
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium focus:outline-0 dark:border-zinc-800 dark:bg-transparent "
+                name="status" id="status" formControlName="status">
+                <option value="" disabled selected>Estatus</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="en progreso">En progreso</option>
+                <option value="completada">Completado</option>
+              </select>
+
+              @if (registerTaskForm.get('status')?.touched && registerTaskForm.get('status')?.hasError('required'))
+              {
+              <p class="text-sm ml-2 text-red-500">El estatus es requerido</p>
+              }
+              <input id="dueDate" placeholder="Fecha" type="date" autocomplete="dueDate"
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium placeholder:text-zinc-400 focus:outline-0 dark:border-zinc-800 dark:bg-transparent  dark:placeholder:text-zinc-400"
+                name="dueDate" formControlName="dueDate">
+              @if (registerTaskForm.get('dueDate')?.touched && registerTaskForm.get('dueDate')?.hasError('required'))
+              {
+              <p class="text-sm ml-2 text-red-500">Fecha requerida</p>
+              }
+              <select
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium focus:outline-0 dark:border-zinc-800 dark:bg-transparent "
+                name="priority" id="priority" formControlName="priority">
+                <option value="" disabled selected>Prioridad</option>
+                <option value="alta">Alta</option>
+                <option value="media">Media</option>
+                <option value="baja">Baja</option>
+              </select>
+
+              @if (registerTaskForm.get('priority')?.touched && registerTaskForm.get('priority')?.hasError('required'))
+              {
+              <p class="text-sm ml-2 text-red-500">Debe seleccionar una prioridad</p>
+              }
+              <select
+                class="mr-2.5 mb-2 h-full min-h-[44px] w-full rounded-lg border border-zinc-200 bg-white px-4 py-3 text-sm font-medium focus:outline-0 dark:border-zinc-800 dark:bg-transparent "
+                name="assignedTo" id="assignedTo" formControlName="assignedTo">
+                <option value="" disabled selected>Asignado a</option>
+                <option *ngFor="let item of users" [value]="item._id">{{item.nombre}} - {{item.nickname}}</option>
+              </select>
+
+              @if (registerTaskForm.get('assignedTo')?.touched &&
+              registerTaskForm.get('assignedTo')?.hasError('required'))
+              {
+              <p class="text-sm ml-2 text-red-500">Selecciones un usuario</p>
+              }
+            </div>
+
+            <button
+              class="whitespace-nowrap bg-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 mt-2 flex h-[unset] w-full items-center justify-center rounded-lg px-4 py-4 text-sm font-medium"
+              [disabled]="registerTaskForm.invalid" type="submit">Aceptar</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

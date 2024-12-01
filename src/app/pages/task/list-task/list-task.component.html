@@ -1,0 +1,75 @@
+<div class="grid lg:grid-cols-2 p-4 gap-4">
+
+  <form class="max-w-md" [formGroup]="searchForm" (ngSubmit)="submit()">
+    <div class="inline-flex items-center">
+      <label class="flex items-center cursor-pointer relative " for="estado">
+        <input type="radio" name="clase_busqueda" formControlName="clase_busqueda"
+          class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
+          value="estado" id="estado" />
+        <span
+          class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+            stroke="currentColor" stroke-width="1">
+            <path fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </span>
+      </label>
+      <label class="cursor-pointer ml-2 text-slate-600 text-sm mr-4" for="estado">
+        Estado
+      </label>
+      <label class="flex items-center cursor-pointer relative" for="prioridad">
+        <input type="radio" name="clase_busqueda" formControlName="clase_busqueda" value="prioridad"
+          class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-slate-300 checked:bg-slate-800 checked:border-slate-800"
+          id="prioridad" />
+        <span
+          class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
+            stroke="currentColor" stroke-width="1">
+            <path fill-rule="evenodd"
+              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </span>
+      </label>
+      <label class="cursor-pointer ml-2 text-slate-600 text-sm" for="prioridad">
+        Prioridad
+      </label>
+    </div>
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <div class="relative">
+      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+          fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+        </svg>
+      </div>
+      <input type="search" id="default-search" formControlName="texto"
+        class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Buscar tareas por estado o prioridad" required />
+      <button type="submit"
+        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buscar</button>
+    </div>
+  </form>
+
+  <a class="w-[200px] ml-auto text-center justify-center align-middle h-[45px] bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+    routerLink="/task/create">Crear
+    tarea</a>
+
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+  <div class="bg-gray-200 p-4 rounded-lg shadow-md" *ngFor="let item of taskList">
+
+    <span
+      class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+      <app-card [title]="item.title" [descrpcion]="item.description" [date]="item.dueDate" [priority]="item.priority"
+        [status]="item.status" [assignedTo]="item.assignedTo" [_id]="item._id"></app-card>
+    </span>
+  </div>
+
+
+</div>

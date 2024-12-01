@@ -1,0 +1,27 @@
+<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{title}}</h5>
+<p class="font-normal text-gray-700 dark:text-gray-400 mb-4">{{descrpcion}}</p>
+<small class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400 block"><span class="text-white">Fecha de
+    creación:</span> {{date |
+  date:'medium'}}</small>
+<small class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400 block"><span class="text-white">Prioridad:
+  </span>{{priority}}</small>
+<small class="mb-4 text-sm font-normal text-gray-500 dark:text-gray-400 block"><span class="text-white">Tarea asignada
+    a:
+  </span>{{assignedTo.nombre}}</small>
+<form class="mb-4" [formGroup]="registerTaskForm">
+
+  <small class="text-sm font-normal text-gray-500 dark:text-gray-400 block"><span class="text-white">Estado:
+    </span><select name="status" id="status" formControlName="status" (change)="statusChange($event)">
+      <option value="" disabled selected>Estatus</option>
+      <option value="pendiente">Pendiente</option>
+      <option value="en progreso">En progreso</option>
+      <option value="completada">Completado</option>
+    </select></small>
+
+  <strong *ngIf="edit">Tarea Cambiada</strong>
+  <div class="flex justify-center p-4 pb-0">
+
+    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+      (click)="deleteTask()">Eliminar</button>
+  </div>
+</form>
